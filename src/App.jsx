@@ -11,7 +11,6 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
-  const menuIsActive = useState(true);
   return (
     <>
       <Router>
@@ -26,7 +25,7 @@ function App() {
                 </Tooltip>
               </div>
             </div>
-            {menuIsActive && <Sidebar />}
+            <Sidebar />
           </Container>
         </div>
       </Router>
