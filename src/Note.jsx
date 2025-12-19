@@ -106,3 +106,4 @@ found 0 vulnerabilities
 */
 
 // code of Sidebar.jsx file is a component from MUI library for sidebar
+// now i am practising on git commands
