@@ -104,3 +104,5 @@ changed 1 package, and audited 244 packages in 10h
 found 0 vulnerabilities
 
 */
+
+// code of Sidebar.jsx file is a component from MUI library for sidebar
