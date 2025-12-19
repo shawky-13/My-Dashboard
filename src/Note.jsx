@@ -87,4 +87,20 @@ Since you're learning and don't need Syncfusion specifically, I'd suggest switch
 
 
 
+notes when i am installling mui-icons there are some error and finally fix it
+
+    PS D:\SoftWare Engineering\React_19\Dashboard\my-dashborad> npm install @mui/icons-material
+PS D:\SoftWare Engineering\React_19\Dashboard\my-dashborad> npm cache clean --force
+>> npm config set registry https://registry.npmjs.org/
+>> npm config set registry https://registry.npmjs.org/
+>>
+npm warn using --force Recommended protections disabled.
+
+changed 1 package, and audited 244 packages in 10h
+
+51 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
 */
