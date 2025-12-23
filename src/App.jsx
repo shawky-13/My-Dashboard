@@ -11,12 +11,15 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
+  let activeMenu = true;
   return (
     <>
       <Router>
         <div className="App">
           <Container maxWidth="sm">
+            {/* main div off the app */}
             <div className="flex relative dark:bg-main-dark-bg">
+              {/* div under is for setting tooltip component  */}
               <div className="fixed bottom-5 right-5">
                 <Tooltip title="Settings" placement="top">
                   <IconButton style={{ zIndex: "1000" }}>
@@ -24,8 +27,20 @@ function App() {
                   </IconButton>
                 </Tooltip>
               </div>
+              {/*
+              here is a note that when activeMenu equal to true sidebar component
+              will be shown with width 240px else it will be hidden
+               */}
+              {activeMenu ? (
+                <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
+                  <Sidebar />
+                </div>
+              ) : (
+                <div className="w-0 dark:bg-secondary-dark-bg">
+                  <Sidebar />
+                </div>
+              )}
             </div>
-            <Sidebar />
           </Container>
         </div>
       </Router>
