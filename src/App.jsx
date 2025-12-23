@@ -40,6 +40,14 @@ function App() {
                   <Sidebar />
                 </div>
               )}
+
+              {/* adding Routes to my app */}
+              <Routes>
+                {/* Route  */}
+                <Route path="/" element={<div>Home Page</div>} />
+                <Route path="/about" element={<div>About Page</div>} />
+                <Route path="/contact" element={<div>Contact Page</div>} />
+              </Routes>
             </div>
           </Container>
         </div>
