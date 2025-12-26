@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 // import React-router libraries to create a dashboard with multiple pages
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
 // import icons from react-icons
 import { FiSettings } from "react-icons/fi";
 //This is a MUI (Material-UI) component that provides tooltip functionality.
@@ -31,7 +37,7 @@ function App() {
               here is a note that when activeMenu equal to true sidebar component
               will be shown with width 240px else it will be hidden
                */}
-              {activeMenu ? (
+              {/* {activeMenu ? (
                 <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
                   <Sidebar />
                 </div>
@@ -39,12 +45,23 @@ function App() {
                 <div className="w-0 dark:bg-secondary-dark-bg">
                   <Sidebar />
                 </div>
-              )}
-
+              )} */}
+              {/* testing some links with nav element */}
+              <nav className="p-4 bg-gray-200 rounded mb-4 mt-96">
+                <Link to="/" className="m-2 p-2 bg-amber-300 rounded">
+                  Home
+                </Link>
+                <Link to="/about" className="m-2 p-2 bg-amber-300 rounded">
+                  About
+                </Link>
+                <Link to="/contact" className="m-2 p-2 bg-amber-300 rounded">
+                  Contact
+                </Link>
+              </nav>
               {/* adding Routes to my app */}
               <Routes>
                 {/* Route  */}
-                <Route path="/" element={<div>Home Page</div>} />
+                <Route path="/" element={<Sidebar />} />
                 <Route path="/about" element={<div>About Page</div>} />
                 <Route path="/contact" element={<div>Contact Page</div>} />
               </Routes>
