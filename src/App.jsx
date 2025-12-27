@@ -15,6 +15,27 @@ import { Container, Tooltip, IconButton } from "@mui/material";
 import Sidebar from "./components/Sidebar";
 // import CSS file
 import "./App.css";
+// import components
+import { Navbar, Footer, SideBar, ThemeSettings } from "./components";
+// import pages
+import {
+  Ecommerce,
+  Orders,
+  Calendar,
+  Employees,
+  Stacked,
+  Pyramid,
+  Customers,
+  Kanban,
+  Line,
+  Area,
+  Bar,
+  Pie,
+  Financial,
+  ColorPicker,
+  ColorMapping,
+  Editor,
+} from "./pages";
 
 function App() {
   let activeMenu = true;
@@ -46,26 +67,35 @@ function App() {
                   <Sidebar />
                 </div>
               )} */}
-              {/* testing some links with nav element */}
-              <nav className="p-4 bg-gray-200 rounded mb-4 mt-96">
-                <Link to="/" className="m-2 p-2 bg-amber-300 rounded">
-                  Home
-                </Link>
-                <Link to="/about" className="m-2 p-2 bg-amber-300 rounded">
-                  About
-                </Link>
-                <Link to="/contact" className="m-2 p-2 bg-amber-300 rounded">
-                  Contact
-                </Link>
-              </nav>
+
               {/* adding Routes to my app */}
               <Routes>
-                {/* Route  */}
-                <Route path="/" element={<Sidebar />} />
-                <Route path="/about" element={<div>About Page</div>} />
-                <Route path="/contact" element={<div>Contact Page</div>} />
+                {/* creating the Routes  */}
+                {/* Dashboard */}
+                <Route path="/" element={<Ecommerce />} />
+                <Route path="/ecommerce" element={<Ecommerce />} />
+                {/* pages */}
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/employees" element={<Employees />} />
+                <Route path="/customers" element={<Customers />} />
+                {/* apps */}
+                <Route path="/kanban" element={<Kanban />} />
+                <Route path="/editor" element={<Editor />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/color-picker" element={<ColorPicker />} />
+                {/* charts */}
+                <Route path="/line" element={<Line />} />
+                <Route path="/area" element={<Area />} />
+                <Route path="/bar" element={<Bar />} />
+                <Route path="/pie" element={<Pie />} />
+                <Route path="/financial" element={<Financial />} />
+                <Route path="/color-mapping" element={<ColorMapping />} />
+                <Route path="/pyramid" element={<Pyramid />} />
+                <Route path="/stacked" element={<Stacked />} />
               </Routes>
             </div>
+            {/* adding Footer Component */}
+            <Footer />
           </Container>
         </div>
       </Router>
