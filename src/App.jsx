@@ -11,17 +11,15 @@ import {
 import { FiSettings } from "react-icons/fi";
 //This is a MUI (Material-UI) component that provides tooltip functionality.
 import { Container, Tooltip, IconButton } from "@mui/material";
-// Import components
-import Sidebar from "./components/Sidebar";
 // import CSS file
 import "./App.css";
 // import components
-import { Navbar, Footer, SideBar, ThemeSettings } from "./components";
+import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 // import pages
 import {
   Ecommerce,
   Orders,
-  Calendar,
+  Calender,
   Employees,
   Stacked,
   Pyramid,
@@ -58,7 +56,7 @@ function App() {
               here is a note that when activeMenu equal to true sidebar component
               will be shown with width 240px else it will be hidden
                */}
-              {/* {activeMenu ? (
+              {activeMenu ? (
                 <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
                   <Sidebar />
                 </div>
@@ -66,7 +64,7 @@ function App() {
                 <div className="w-0 dark:bg-secondary-dark-bg">
                   <Sidebar />
                 </div>
-              )} */}
+              )}
 
               {/* adding Routes to my app */}
               <Routes>
@@ -81,7 +79,7 @@ function App() {
                 {/* apps */}
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/calender" element={<Calender />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
                 {/* charts */}
                 <Route path="/line" element={<Line />} />

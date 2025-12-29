@@ -107,3 +107,11 @@ found 0 vulnerabilities
 
 // code of Sidebar.jsx file is a component from MUI library for sidebar
 // now i am practising on git commands
+
+/*
+    After creating components and pages folders and adding the necessary code
+    i started with Sidebar component and started to build it .
+
+
+
+*/
