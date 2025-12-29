@@ -2,7 +2,7 @@ import React from "react";
 // first start to import some components from react-router-dom
 import { Link, NavLink } from "react-router-dom";
 // import some icons from react icons
-import { siShopware } from "react-icons/si";
+import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
 // import links from dummy data file
 import { links } from "../data/dummy";
@@ -10,7 +10,11 @@ import { links } from "../data/dummy";
 import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
-  return <div></div>;
+  return (
+    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+      sidebar component
+    </div>
+  );
 };
 
 export default Sidebar;
