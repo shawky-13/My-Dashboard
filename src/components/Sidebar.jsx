@@ -1,12 +1,33 @@
 import React from "react";
+// first start to import some components from react-router-dom
+import { Link, NavLink } from "react-router-dom";
+// import some icons from react icons
+import { siShopware } from "react-icons/si";
+import { MdOutlineCancel } from "react-icons/md";
+// import links from dummy data file
+import { links } from "../data/dummy";
+// import tooltip component from MUI
+import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
-  return <div>
-
-  </div>;
+  return <div></div>;
 };
 
 export default Sidebar;
+
+/*
+    Steps to create Sidebar component :
+1. import React
+2. import Link and NavLink from react-router-dom for navigation
+3. import some icons from react-icons
+4. import links data from dummy data file
+5. import Tooltip component from MUI for tooltip functionality
+
+
+
+
+
+*/
 
 // note in this componet an error has been appear when i run the code
 /*
