@@ -57,7 +57,7 @@ function App() {
               will be shown with width 240px else it will be hidden
                */}
               {activeMenu ? (
-                <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
+                <div className="w-72 fixed left-0 top-0 sidebar dark:bg-secondary-dark-bg bg-white ">
                   <Sidebar />
                 </div>
               ) : (

@@ -10,9 +10,29 @@ import { links } from "../data/dummy";
 import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
+  let activeMenu = true;
   return (
-    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
-      sidebar component
+    // the div under is the main div of the sidebar
+    <div className="ml-3 p-4 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+      {/* // here i check if activeMenu is true to show the sidebar content */}
+      {activeMenu && (
+        <div className="flex justify-between items-center">
+          {/* here i used Link component from react-router to transfer between the pages */}
+          <Link to="/">
+            <div className="flex items-center gap-3 justifiy-between text-2xl font-extrabold m-4 dark:text-white text-slate-900">
+              {/* i used SiShopware component from react-icons */}
+              <SiShopware /> <span>Shoppy</span>
+            </div>
+          </Link>
+          {/* here i used Tooltip component from MUI for tooltip functionality */}
+          <Tooltip title="Menu" placement="top" className="cursor-pointer">
+            <button type="button">
+              {/* i used MdOutlineCancel component from react-icons */}
+              <MdOutlineCancel className="text-2xl" />
+            </button>
+          </Tooltip>
+        </div>
+      )}
     </div>
   );
 };
