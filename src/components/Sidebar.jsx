@@ -19,7 +19,7 @@ const Sidebar = () => {
         <div className="flex justify-between items-center">
           {/* here i used Link component from react-router to transfer between the pages */}
           <Link to="/">
-            <div className="flex items-center gap-3 justifiy-between text-2xl font-extrabold m-4 dark:text-white text-slate-900">
+            <div className="flex items-center gap-3 justifiy-between text-2xl font-extrabold m-4 text-slate-900 dark:text-white">
               {/* i used SiShopware component from react-icons */}
               <SiShopware /> <span>Shoppy</span>
             </div>
@@ -33,6 +33,30 @@ const Sidebar = () => {
           </Tooltip>
         </div>
       )}
+      {/* creating the links of the sidebar */}
+      <div className="mt-10">
+        {links.map((item) => {
+          return (
+            <div className="mb-3" key={item.title}>
+              <p className="uppercase text-gray-400 mb-5">{item.title}</p>
+              <div>
+                {item.links.map((link) => {
+                  return (
+                    <NavLink
+                      to={link.path}
+                      key={link.name}
+                      className="flex justify-start items-center rounded-lg p-2 m-2 duration-400 text-md text-gray-700 hover:bg-yellow-300 dark:hover:bg-slate-700 dark:text-gray-200"
+                    >
+                      <p className="mr-3">{link.icon}</p>
+                      <p className=" capitalize">{link.name}</p>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

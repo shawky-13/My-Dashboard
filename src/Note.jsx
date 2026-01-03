@@ -112,6 +112,7 @@ found 0 vulnerabilities
     After creating components and pages folders and adding the necessary code
     i started with Sidebar component and started to build it .
 
+    Note that the darkMode is tunred on when your browser is in darkMode
 
 
 */
