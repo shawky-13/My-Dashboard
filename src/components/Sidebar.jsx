@@ -10,7 +10,11 @@ import { links } from "../data/dummy";
 import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
+  let isActive = false;
   let activeMenu = true;
+  let activeLink = "bg-yellow-300 dark:bg-slate-700 dark:text-gray-200";
+  let normalLink =
+    "hover:bg-yellow-300 hover:dark:bg-slate-700 dark:text-gray-200";
   return (
     // the div under is the main div of the sidebar
     <div className="ml-3 p-4 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
@@ -35,17 +39,24 @@ const Sidebar = () => {
       )}
       {/* creating the links of the sidebar */}
       <div className="mt-10">
+        {/* here i map on the links from dummy file  */}
         {links.map((item) => {
           return (
+            // creating the main div in this section
             <div className="mb-3" key={item.title}>
+              {/* here is the title of the links in the sidebar */}
               <p className="uppercase text-gray-400 mb-5">{item.title}</p>
+              {/* in the div below there is a map again to loopping on the internal links */}
               <div>
                 {item.links.map((link) => {
                   return (
+                    // here i use NavLink component to navigate between the pages
                     <NavLink
-                      to={link.path}
+                      to={`/${link.name}`}
                       key={link.name}
-                      className="flex justify-start items-center rounded-lg p-2 m-2 duration-400 text-md text-gray-700 hover:bg-yellow-300 dark:hover:bg-slate-700 dark:text-gray-200"
+                      className={`flex justify-start items-center rounded-lg p-2 m-2 duration-400 text-md text-gray-700 ${
+                        isActive ? activeLink : normalLink
+                      }`}
                     >
                       <p className="mr-3">{link.icon}</p>
                       <p className=" capitalize">{link.name}</p>
