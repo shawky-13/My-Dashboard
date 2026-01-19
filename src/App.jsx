@@ -35,8 +35,12 @@ import {
   Editor,
 } from "./pages";
 
+// import context provider to use context values from ContextProvider file
+import { useStateContext } from "./context/ContextProvider";
+
 function App() {
-  let activeMenu = true;
+  const { isActive, setIsActive } = useStateContext();
+  // let activeMenu = true;
   return (
     <>
       <Router>
@@ -56,7 +60,7 @@ function App() {
               here is a note that when activeMenu equal to true sidebar component
               will be shown with width 240px else it will be hidden
                */}
-              {activeMenu ? (
+              {isActive ? (
                 <div className="w-72 fixed top-0 left-0 sidebar dark:bg-secondary-dark-bg bg-white ">
                   <Sidebar />
                 </div>

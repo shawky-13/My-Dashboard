@@ -2,11 +2,19 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
+// import ContextProvider to wrap the App component
+import { ContextProvider } from "./context/ContextProvider";
+
+// wrap App component with ContextProvider to provide context to the entire app
 
 createRoot(document.getElementById("root")).render(
+  // note: ContextProvider component is for providing context to the entire app
   <StrictMode>
-    <App />
-  </StrictMode>
+    <ContextProvider>
+      <App />
+    </ContextProvider>
+    ,
+  </StrictMode>,
 );
 
 // in main.jsx file we import :
