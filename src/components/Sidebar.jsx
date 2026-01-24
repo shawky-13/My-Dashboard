@@ -15,7 +15,7 @@ import { useStateContext } from "../context/ContextProvider";
 const Sidebar = () => {
   const { isActive, setIsActive } = useStateContext();
   // let isActive = false;
-  let activeMenu = true;
+  // let activeMenu = true;
   let activeLink = "bg-yellow-300 dark:bg-slate-700 dark:text-gray-200";
   let normalLink =
     "hover:bg-yellow-300 hover:dark:bg-slate-700 dark:text-gray-200";
@@ -23,7 +23,7 @@ const Sidebar = () => {
     // the div under is the main div of the sidebar
     <div className="ml-3 p-4 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
       {/* // here i check if activeMenu is true to show the sidebar content */}
-      {activeMenu && (
+      {isActive && (
         <div className="flex justify-between items-center">
           {/* here i used Link component from react-router to transfer between the pages */}
           {/* note: onClick is for when i click on Shoppy or shop icon it makes SetIsActive is false */}

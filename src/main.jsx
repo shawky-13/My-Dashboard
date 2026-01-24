@@ -13,7 +13,6 @@ createRoot(document.getElementById("root")).render(
     <ContextProvider>
       <App />
     </ContextProvider>
-    ,
   </StrictMode>,
 );
 
