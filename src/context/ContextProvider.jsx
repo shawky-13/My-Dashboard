@@ -16,14 +16,14 @@ const initialState = {
 // It provides state and functions to all child components via StateContext.Provider.
 export const ContextProvider = ({ children }) => {
   // create the states you want to share across components
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setActiveMenu] = useState(true);
   // return the context you created with it's Provider
   return (
     // note : value prop is where you define what values you want to share across components
     <StateContext.Provider
       value={{
         isActive,
-        setIsActive,
+        setActiveMenu,
       }}
     >
       {children}

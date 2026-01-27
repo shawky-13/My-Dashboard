@@ -13,7 +13,7 @@ import { Tooltip } from "@mui/material";
 import { useStateContext } from "../context/ContextProvider";
 
 const Sidebar = () => {
-  const { isActive, setIsActive } = useStateContext();
+  const { isActive, setActiveMenu } = useStateContext();
   // let isActive = false;
   // let activeMenu = true;
   let activeLink = "bg-yellow-300 dark:bg-slate-700 dark:text-gray-200";
@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div className="flex justify-between items-center">
           {/* here i used Link component from react-router to transfer between the pages */}
           {/* note: onClick is for when i click on Shoppy or shop icon it makes SetIsActive is false */}
-          <Link to="/" onClick={() => setIsActive(false)}>
+          <Link to="/" onClick={() => setActiveMenu(false)}>
             <div className="flex items-center gap-3 justifiy-between text-2xl font-extrabold m-4 text-slate-900 dark:text-white">
               {/* i used SiShopware component from react-icons */}
               <SiShopware /> <span>Shoppy</span>
@@ -36,7 +36,10 @@ const Sidebar = () => {
           {/* here i used Tooltip component from MUI for tooltip functionality */}
           <Tooltip title="Menu" placement="top" className="cursor-pointer">
             {/* note: that onClick below is for when i click on exit button is makes setIsActive is opposite its value */}
-            <button type="button" onClick={() => setIsActive((prev) => !prev)}>
+            <button
+              type="button"
+              onClick={() => setActiveMenu((prev) => !prev)}
+            >
               {/* i used MdOutlineCancel component from react-icons */}
               <MdOutlineCancel className="text-2xl" />
             </button>
