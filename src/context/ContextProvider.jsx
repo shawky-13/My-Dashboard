@@ -17,6 +17,9 @@ const initialState = {
 export const ContextProvider = ({ children }) => {
   // create the states you want to share across components
   const [isActive, setActiveMenu] = useState(true);
+  // create the states for the icons on Navbar
+  const [isClicked, setIsClicked] = useState(initialState);
+  const [screenSize, setScreenSize] = useState(undefined);
   // return the context you created with it's Provider
   return (
     // note : value prop is where you define what values you want to share across components
@@ -24,6 +27,8 @@ export const ContextProvider = ({ children }) => {
       value={{
         isActive,
         setActiveMenu,
+        isClicked,
+        setIsClicked,
       }}
     >
       {children}

@@ -15,8 +15,9 @@ import { useStateContext } from "../context/ContextProvider";
 import { Cart, Chat, Notification, UserProfile } from ".";
 
 const Navbar = () => {
-  // using active menu from context provider
-  const { activeMenu, setActiveMenu } = useStateContext();
+  // using active menu & isClicked for navbar icons from context provider
+  const { activeMenu, setActiveMenu, isClicked, setIsClicked } =
+    useStateContext();
 
   // create Button component to reuse it in the Navbar
   const NavButton = ({ title, icon, dotColor, customFunc }) => {
@@ -47,18 +48,18 @@ const Navbar = () => {
       <NavButton
         title={"Cart"}
         icon={<FiShoppingCart />}
-        customFunc={() => handleClick("cart")}
+        customFunc={() => () => setIsClicked({ cart: true })}
       />
       <NavButton
         title={"Chat"}
         icon={<BsChatLeft />}
-        customFunc={() => handleClick("Chat")}
+        customFunc={() => setIsClicked({ chat: true })}
         dotColor={"#03C9D7"}
       />
       <NavButton
         title={"Notification"}
         icon={<RiNotification3Line />}
-        customFunc={() => handleClick("Notification")}
+        customFunc={() => setIsClicked({ notification: true })}
         dotColor={"#03C9D7"}
       />
       <Tooltip>
@@ -71,6 +72,11 @@ const Navbar = () => {
           <MdKeyboardArrowDown className="text-gray-400 text-14" />
         </div>
       </Tooltip>
+      {/* adding the content when clicking on navbar icons */}
+      {isClicked.cart && <Cart />}
+      {isClicked.chat && <Chat />}
+      {isClicked.notification && <Notification />}
+      {isClicked.userProfile && <UserProfile />}
     </div>
   );
 };
