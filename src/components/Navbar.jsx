@@ -16,7 +16,7 @@ import { Cart, Chat, Notification, UserProfile } from ".";
 
 const Navbar = () => {
   // using active menu & isClicked for navbar icons from context provider
-  const { activeMenu, setActiveMenu, isClicked, setIsClicked } =
+  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick } =
     useStateContext();
 
   // create Button component to reuse it in the Navbar
@@ -48,21 +48,25 @@ const Navbar = () => {
       <NavButton
         title={"Cart"}
         icon={<FiShoppingCart />}
-        customFunc={() => () => setIsClicked({ cart: true })}
+        customFunc={handleClick("cart")}
       />
       <NavButton
         title={"Chat"}
         icon={<BsChatLeft />}
-        customFunc={() => setIsClicked({ chat: true })}
+        customFunc={handleClick("chat")}
         dotColor={"#03C9D7"}
       />
       <NavButton
         title={"Notification"}
         icon={<RiNotification3Line />}
-        customFunc={() => setIsClicked({ notification: true })}
+        customFunc={handleClick("notification")}
         dotColor={"#03C9D7"}
       />
-      <Tooltip>
+      <Tooltip
+        title={"Profile"}
+        placement="bottom"
+        onClick={() => handleClick("userProfile")}
+      >
         <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
           <img src={avatar} alt="avatar" className={"w-10 h-10 rounded-full"} />
           <p>
