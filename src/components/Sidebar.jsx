@@ -13,7 +13,14 @@ import { Tooltip } from "@mui/material";
 import { useStateContext } from "../context/ContextProvider";
 
 const Sidebar = () => {
-  const { isActive, setActiveMenu } = useStateContext();
+  const { isActive, setActiveMenu, screenSize, setScreenSize } =
+    useStateContext();
+  // create a function to handle closing the sidebar when clicking on a link in mobile view
+  const handleCloseSidebar = () => {
+    if (isActive && screenSize <= 900) {
+      setActiveMenu(false);
+    }
+  };
   // let isActive = false;
   // let activeMenu = true;
   let activeLink = "bg-yellow-300 dark:bg-slate-700 dark:text-gray-200";
@@ -27,7 +34,7 @@ const Sidebar = () => {
         <div className="flex justify-between items-center">
           {/* here i used Link component from react-router to transfer between the pages */}
           {/* note: onClick is for when i click on Shoppy or shop icon it makes SetIsActive is false */}
-          <Link to="/" onClick={() => setActiveMenu(false)}>
+          <Link to="/" onClick={handleCloseSidebar}>
             <div className="flex items-center gap-3 justifiy-between text-2xl font-extrabold m-4 text-slate-900 dark:text-white">
               {/* i used SiShopware component from react-icons */}
               <SiShopware /> <span>Shoppy</span>
@@ -61,6 +68,7 @@ const Sidebar = () => {
                   return (
                     // here i use NavLink component to navigate between the pages
                     <NavLink
+                      onClick={handleCloseSidebar}
                       to={`/${link.name}`}
                       key={link.name}
                       className={`flex justify-start items-center rounded-lg p-2 m-2 duration-400 text-md text-gray-700 ${
