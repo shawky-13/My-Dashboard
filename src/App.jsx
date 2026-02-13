@@ -51,7 +51,7 @@ function App() {
             <div className="fixed bottom-5 right-5">
               <Tooltip title="Settings" placement="top">
                 <IconButton style={{ zIndex: "1000" }}>
-                  <FiSettings className="text-6xl rounded-full duration-300 text-white p-3 bg-amber-400 hover:text-light-gray hover:shadow" />
+                  <FiSettings className="text-6xl rounded-full duration-300 text-white p-3 bg-main-bg hover:text-light-gray hover:shadow" />
                 </IconButton>
               </Tooltip>
             </div>

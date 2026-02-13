@@ -23,9 +23,9 @@ const Sidebar = () => {
   };
   // let isActive = false;
   // let activeMenu = true;
-  let activeLink = "bg-yellow-300 dark:bg-slate-700 dark:text-gray-200";
+  let activeLink = "dark:bg-slate-700 dark:text-gray-200";
   let normalLink =
-    "hover:bg-yellow-300 hover:dark:bg-slate-700 dark:text-gray-200";
+    "hover:bg-light-gray hover:dark:bg-slate-700 dark:text-gray-200";
   return (
     // the div under is the main div of the sidebar
     <div className="ml-3 p-4 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
