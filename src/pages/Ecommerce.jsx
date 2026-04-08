@@ -5,10 +5,10 @@ import { Stacked, Pie, Button, SparkLine } from "../components"; // import compo
 import {
   earningData,
   SparklineAreaData,
-  ecomPieChartData,
+
 } from "../data/dummy"; // import dummy data
 // import Context Provider
-import { useStateContext } from "../context/ContextProvider";
+// import { useStateContext } from "../context/ContextProvider";
 import welcomeImg from "../data/welcome-bg.svg"; // import welcome image
 
 const Ecommerce = () => {
