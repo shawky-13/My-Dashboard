@@ -66,23 +66,50 @@ const Customers = () => {
     Budget: "",
     Location: "",
   });
+  // Stores what the user is typing into the add form. 
+  // Each property matches a field in the form. 
+  // Status defaults to "Active" and StatusBg defaults to green "#8BE78B" 
+  // so the form has sensible starting values.
+  //  Every time the user types in an input this object gets updated.
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewRow((prev) => ({ ...prev, [name]: value }));
   };
+  // Runs every time the user types in any input field.
+  //  e.target is the input element that was typed into.
+  //  name is the input's name attribute (like "CustomerName").
+  //  value is what was typed. { ...prev, [name]: value } copies all existing form values and updates only the one field that changed. 
+  // The [name] with square brackets means it's a dynamic key — it could be any field name.
+
 
   const handleAddRow = () => {
+    // checks if the required fields CustomerName and ProjectName are filled in.
     if (!newRow.CustomerName || !newRow.ProjectName) {
       alert("Please fill in at least Name and Project Name");
       return;
     }
+    // Runs when the user clicks "Add Customer". 
+    // First it validates — if CustomerName or ProjectName is empty,
+    //  it shows an alert and stops with return.
+    //  The ! means "not" — !newRow.CustomerName means "if CustomerName is empty".
+
     const newCustomer = {
       ...newRow,
       CustomerID: Date.now(),
       CustomerImage: "https://via.placeholder.com/40",
     };
+    // Creates the complete new customer object.
+    //  ...newRow spreads all the form values into the object. 
+    // Date.now() generates a unique ID using the current timestamp in milliseconds — guaranteed to be unique every time.
+    //  CustomerImage gets a placeholder image since the form doesn't have an image upload.
+
     setRowData((prev) => [...prev, newCustomer]);
+    // Adds the new customer to the grid. 
+    // prev is the current array of all rows. 
+    // [...prev, newCustomer] creates a new array with all existing rows plus the new one at the end. 
+    // AG Grid detects the state change and automatically re-renders to show the new row.
+
     setNewRow({
       CustomerName: "",
       CustomerEmail: "",
@@ -95,6 +122,9 @@ const Customers = () => {
     });
     setShowForm(false);
   };
+  // Resets the form back to empty after adding. 
+  // setShowForm(false) hides the form.
+  //  This gives a clean slate for the next time the user wants to add a customer.
 
   const handleDelete = () => {
     const remainingRows = rowData.filter(
@@ -103,8 +133,11 @@ const Customers = () => {
     setRowData(remainingRows);
     setSelectedRows([]);
   };
+  // Deletes all selected rows.
+  // .filter() loops through every row and keeps only the ones whose CustomerID is NOT in the selectedRows array. 
+  // !selectedRows.includes(row.CustomerID) means "keep this row if its ID is not in the selected list". setRowData(remainingRows) updates the grid with the filtered rows. setSelectedRows([]) clears the selection.
 
-  // ✅ NO checkbox column — v33 handles it via rowSelection prop only
+
   const columnDefs = [
     {
       headerName: "Name",
@@ -112,8 +145,9 @@ const Customers = () => {
       minWidth: 180,
       flex: 2,
       // ✅ put checkboxSelection here on the FIRST data column
-      checkboxSelection: true,
-      headerCheckboxSelection: true,
+      checkboxSelection: true,  //  adds a checkbox to every cell in this column
+      headerCheckboxSelection: true, // adds a "select all" checkbox in the column header — clicking it selects or deselects all visible rows at once.
+
       cellRenderer: (params) => (
         <div className="flex items-center gap-3 h-full">
           <img
@@ -136,19 +170,31 @@ const Customers = () => {
             </p>
           </div>
         </div>
+        /*
+        cellRenderer replaces the default plain text with custom JSX.
+        params is the object AG Grid passes to every renderer containing information about the current cell and row.
+        params.data is the entire row object — used to access CustomerImage, CustomerName, and CustomerEmail all in the same cell.
+        borderRadius: "50%" makes the image perfectly round. 
+        objectFit: "cover" fills the circle without stretching. 
+        flexShrink: 0 prevents the image from shrinking when the column is narrow.
+
+        */
       ),
     },
+
     {
       headerName: "Project Name",
       field: "ProjectName",
       minWidth: 150,
       flex: 2,
     },
+
     {
       headerName: "Status",
       field: "Status",
       minWidth: 120,
       flex: 1,
+
       cellRenderer: (params) => (
         <div className="flex items-center gap-2 h-full">
           <div
@@ -164,14 +210,21 @@ const Customers = () => {
             {params.value}
           </span>
         </div>
+        /*
+        The Status column with a colored dot. 
+        params.data.StatusBg gets the color value from the row — like "#8BE78B" for Active or "red" for Cancel.
+         params.value is the Status text like "Active". The small 10px circle is created with borderRadius: "50%" on a div — no image or icon needed.
+        */
       ),
     },
+
     {
       headerName: "Weeks",
       field: "Weeks",
       minWidth: 90,
       flex: 1,
     },
+
     {
       headerName: "Budget",
       field: "Budget",
@@ -185,12 +238,14 @@ const Customers = () => {
         </div>
       ),
     },
+
     {
       headerName: "Location",
       field: "Location",
       minWidth: 110,
       flex: 1,
     },
+
     {
       headerName: "Customer ID",
       field: "CustomerID",
@@ -213,6 +268,7 @@ const Customers = () => {
     autoHeight: true,
   };
 
+  //  reusable style object applied to every input field in the form.
   const inputStyle = {
     padding: "8px 12px",
     borderRadius: "8px",
@@ -225,7 +281,7 @@ const Customers = () => {
   };
 
   return (
-    <div className="m-2 p-2 md:m-10 md:p-10">
+    <div className="m-2 p-2 bg-gray-50 rounded-4xl md:m-10 md:p-10">
       <Header title="Customers" category="Page" />
 
       {/* Action buttons */}
@@ -343,7 +399,7 @@ const Customers = () => {
           height: "calc(100vh - 250px)",
           width: "100%",
           minHeight: "400px",
-          borderRadius: "16px",
+          borderRadius: "0px",
           overflow: "hidden",
           boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
         }}
@@ -358,13 +414,16 @@ const Customers = () => {
           rowHeight={65}
           suppressHorizontalScroll={false}
           rowSelection="multiple"             // ✅ v33 accepts simple string again
-          suppressRowClickSelection={true}    // ✅ only select via checkbox not row click
+          // suppressRowClickSelection={true}    // ✅ only select via checkbox not row click
           onSelectionChanged={(e) => {
             const selected = e.api
               .getSelectedRows()
               .map((row) => row.CustomerID);
             setSelectedRows(selected);
           }}
+        // Fires every time the selection changes.
+        // e.api.getSelectedRows() returns the full data objects of all selected rows.
+        // .map(row => row.CustomerID) extracts just the IDs and stores them in selectedRows state — which the delete button uses
         />
       </div>
     </div>
