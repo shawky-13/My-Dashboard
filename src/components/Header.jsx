@@ -3,7 +3,7 @@ const Header = ({ title, category }) => {
     <p className="text-gray-400">
       {category}
     </p>
-    <p className="text-3xl tracking-tight font-bold">
+    <p className="text-3xl tracking-tight font-bold text-slate-900 dark:text-white">
       {title}
     </p>
   </div>;

@@ -32,7 +32,6 @@ const Calendar = () => {
   //  Every time the user types or picks a color, this object gets updated.
 
   const [showAddForm, setShowAddForm] = useState(false); // showAddForm: Toggles the visibility of the creation form.
-  const [clickedDate, setClickedDate] = useState(""); // clickedDate: Stores the specific date string when a user clicks an empty calendar slot.
 
   // ✅ convert scheduleData from dummy.jsx to FullCalendar format
   const [events, setEvents] = useState(
@@ -76,7 +75,6 @@ const Calendar = () => {
 
   // ✅ runs when user clicks on an empty date
   const handleDateClick = (info) => {
-    setClickedDate(info.dateStr);
     setNewEvent((prev) => ({ ...prev, start: info.dateStr }));
     setShowAddForm(true);
   };

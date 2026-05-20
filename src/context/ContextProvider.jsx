@@ -1,42 +1,71 @@
-// import necessary modules from react
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// create context
 const StateContext = createContext();
 
-// create initial State
-const initialState = {
-  chat: false,
-  cart: false,
-  userProfile: false,
-  notification: false,
-};
+const initialColor = localStorage.getItem("colorMode") || "#1A97F5";
+const initialMode = localStorage.getItem("themeMode") || "Light";
 
-// create ContextProvider component
-// It provides state and functions to all child components via StateContext.Provider.
 export const ContextProvider = ({ children }) => {
-  // create the states you want to share across components
-  const [isActive, setActiveMenu] = useState(true);
-  // create the states for the icons on Navbar
-  const [isClicked, setIsClicked] = useState(initialState);
-  // create the state for the screen size in mobile responsive design
-  const [screenSize, setScreenSize] = useState(undefined);
-  // return the context you created with it's Provider
-  // create a handleClick function to manage the isClicked state
-  const handleClick = (clicked) => {
-    setIsClicked({ ...initialState, [clicked]: true });
+  const [themeSettings, setThemeSettings] = useState(false);
+  const [currentColor, setCurrentColor] = useState(initialColor);
+  const [currentMode, setCurrentMode] = useState(initialMode);
+  const [isActive, setIsActive] = useState(true);
+  const [activeMenu, setActiveMenu] = useState("");
+
+  const handleClick = (menuName) => {
+    setActiveMenu((currentMenu) => (currentMenu === menuName ? "" : menuName));
   };
+
+  // Apply dark mode class on mount from saved preference
+  useEffect(() => {
+    if (currentMode === "Dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [currentMode]);
+
+  // Inject CSS variable --current-color into :root so ALL components
+  // can reference it via var(--current-color) without any prop drilling
+  useEffect(() => {
+    document.documentElement.style.setProperty("--current-color", currentColor);
+
+    // Also derive a lighter tint (10% opacity) for hover/bg states
+    document.documentElement.style.setProperty(
+      "--current-color-light",
+      currentColor + "1A"
+    );
+  }, [currentColor]);
+
+  const setColor = (color) => {
+    setCurrentColor(color);
+    localStorage.setItem("colorMode", color);
+  };
+
+  const setMode = (mode) => {
+    setCurrentMode(mode);
+    localStorage.setItem("themeMode", mode);
+    if (mode === "Dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   return (
-    // note : value prop is where you define what values you want to share across components
     <StateContext.Provider
       value={{
+        themeSettings,
+        setThemeSettings,
+        currentColor,
+        currentMode,
+        setColor,
+        setMode,
         isActive,
+        setIsActive,
+        activeMenu,
         setActiveMenu,
-        isClicked,
-        setIsClicked,
         handleClick,
-        screenSize,
-        setScreenSize,
       }}
     >
       {children}
@@ -44,13 +73,4 @@ export const ContextProvider = ({ children }) => {
   );
 };
 
-// custom hook to use the context values in other components
 export const useStateContext = () => useContext(StateContext);
-
-// note: when you use ContextProvider you must wrap your app into the ContextProvider component
-//       go to index.js file and wrap <App /> with <ContextProvider></ContextProvider> after importing it.
-
-// after you importing ContextProvider in any component you can use the custom hook useStateContext to access the context values
-// example:
-// import { useStateContext } from "./context/ContextProvider";
-// const { isActive, setIsActive } = useStateContext();

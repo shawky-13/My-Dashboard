@@ -20,9 +20,6 @@ const ColorPicker = () => {
     "#FF5C8E", "#FB9678", "#1E4DB7",
   ]);
 
-  // ✅ controls whether the picker is visible or hidden
-  const [showPicker, setShowPicker] = useState(true);
-
   // ✅ copied state for the copy button feedback
   const [copied, setCopied] = useState(false);
 
@@ -376,7 +373,7 @@ const ColorPicker = () => {
                 flex: 1,
                 padding: "10px",
                 borderRadius: "10px",
-                border: "none",
+                border: "1px solid #e2e8f0",
                 cursor: "pointer",
                 fontWeight: "500",
                 fontSize: "13px",
@@ -399,7 +396,6 @@ const ColorPicker = () => {
                 fontSize: "13px",
                 background: savedColors.includes(color) ? "#f1f5f9" : "#f8fafc",
                 color: savedColors.includes(color) ? "#94a3b8" : "#1e293b",
-                border: "1px solid #e2e8f0",
                 transition: "all 0.2s",
               }}
             >
